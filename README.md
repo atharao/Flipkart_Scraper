@@ -36,13 +36,13 @@ pip install prettytable
 
 ## How to Use
 
-Run the script from the command line with a page number as an argument. The script will scrape the mobile products from the specified Flipkart page and generate a CSV file named "products.csv" in the current directory.
+Run the script from the command line with a page number as an argument. The script will scrape the mobile products from the specified Flipkart page and generate a CSV file named "products.csv" in the current directory also displays the data in a well-organized PrettyTable in the terminal for easy reading.
 
 ```bash
 python flipkart_scraper.py 1
  
 ```
-The above command will scrape the first page of Flipkart's search results for mobile products.If you want Scrape the Second Page repace 1 with 2 and so on....
+The above command will scrape the first page of Flipkart's search results for mobile products.If you want Scrape the Second Page repace 1 with 2 and so on.
 
 ## Contributing
 
