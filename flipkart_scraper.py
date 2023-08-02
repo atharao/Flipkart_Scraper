@@ -6,15 +6,12 @@ from prettytable import PrettyTable
 import csv
 
 def scrape_flipkart_products(page_url):
-    # opening url and grabbing the web page
     uClient = urlopen(page_url)
     page_html = uClient.read()
     uClient.close()
 
-    # html parsing
     page_soup = soup(page_html, 'html.parser')
 
-    # grabbing all containers with class name = item-container
     containers = page_soup.findAll('div', {'class': '_13oc-S'})
 
     filename = "products.csv"
@@ -28,29 +25,24 @@ def scrape_flipkart_products(page_url):
         product_table = PrettyTable(headers)
 
         for container in containers:
-            # Extracting product name
             product_name_container = container.find('div', {'class': '_4rR01T'})
             product_name = product_name_container.text.strip() if product_name_container else 'N/A'
 
-            # Extracting price
             price_container = container.find('div', {'class': '_30jeq3 _1_WHN1'})
             price = price_container.text.strip() if price_container else 'N/A'
 
-            # Extracting specs
             spec_container = container.find('li', {'class': 'rgWa7D'})
             specs = spec_container.text.strip() if spec_container else 'N/A'
 
-            # Extracting Offer %
             Offer_container = container.find('div', {'class': '_3Ay6Sb'})
             Offer = Offer_container.text.strip() if Offer_container else 'N/A'
 
-            # Writing to the CSV file
             csv_writer.writerow([product_name.replace(',', '|'), price.replace(',', ''), Offer.replace(',', ' '), specs.replace(',', '|')])
 
-            # Adding to the PrettyTable
+            
             product_table.add_row([product_name, price, Offer, specs])
 
-        # Print the PrettyTable
+        
         print(product_table)
 
 
